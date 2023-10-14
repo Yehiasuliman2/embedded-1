@@ -1,0 +1,36 @@
+#include <avr/io.h>
+#include <util/delay.h>
+#include "dio.h"
+#include "uart.h"
+#include "dio.ino"
+#include "uart.ino"
+
+const int ledpin=13 //ledpin
+const int pushbuttonPin = 7; // pushbuttonPin
+
+void setup();
+{
+  serial.begin(9600);
+  pinmode(ledpin,OUTPUT); // identfing the Led as output
+  pinmode(pushbuttonpin,INPUT); //identfing the pushbuttonpin as input
+
+}
+
+void loop();
+int digitalval=digitalRead(pushbuttonpin); //recording the records
+delay(3000); //3000 means 3 seconds
+if (High==digitalval)
+{
+  digitalwrite(ledpin,LOW);//turn the ledpin OFF
+serial.print("button pressed");
+delay(3000);
+}
+else
+{
+  digitalwrite(ledpin,HIGH);// turning the light ON
+  serial.print("Light ON");
+  delay(3000);
+  digitalwrite(ledpin,LOW);// turn the light off 
+delay(3000);
+
+}
